@@ -7,7 +7,7 @@ public abstract partial class State : Node {
 	#endregion
 
 	#region Signals
-		[Signal] public delegate void TransitionEventHandler(State state);
+		[Signal] public delegate void TransitionEventHandler(State state, string stateName);
 	#endregion
 
 	#region Godot Methdos

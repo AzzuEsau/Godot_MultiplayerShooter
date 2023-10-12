@@ -3,7 +3,7 @@ using System;
 
 public partial class GunRotationPoint : Marker2D {
 	#region Variables
-		// [Export] private int vairbaleInEditor;
+		[Export] private Sprite2D gunSprite;
 	#endregion
 
 	#region Signals
@@ -16,7 +16,7 @@ public partial class GunRotationPoint : Marker2D {
 		}
 
 		public override void _Process(double delta) {
-
+			FlipGun();
 		}
 
 		public override void _PhysicsProcess(double delta) {
@@ -25,6 +25,11 @@ public partial class GunRotationPoint : Marker2D {
     #endregion
 
     #region My Methods
+		private void FlipGun() {
+			float orientation = Mathf.RadToDeg(Rotation) % 360;
+			GD.Print(orientation);
+			gunSprite.FlipV = orientation > 90 && orientation < 270;
+		}
     #endregion
 
     #region Events

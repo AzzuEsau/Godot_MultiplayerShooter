@@ -67,12 +67,12 @@ public partial class FiniteStateMachine : Node {
 	#endregion
 
     #region Events
-		private void NewState_Transition(State state) {
+		private void NewState_Transition(State state, string stateName) {
 			// Check if the state is the actual state to do not enter the same state again
 			if(state == currentState) return;
 
 			// Try to get the state of the dictionary
-			State newState = states[state.Name.ToString().ToLower()];
+			State newState = states[stateName.ToLower()];
 			if(newState == null) return;
 
 			// Switch between two states

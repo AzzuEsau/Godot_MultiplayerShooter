@@ -11,11 +11,18 @@ config_version=5
 [application]
 
 config/name="MultiplayerShooter"
+run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://media/sprites/icons/icon.svg"
 
+[autoload]
+
+Global="*res://scritps/resources/autoload/Global.cs"
+
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

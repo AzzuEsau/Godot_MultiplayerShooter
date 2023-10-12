@@ -27,14 +27,15 @@ public partial class PlayerIdle : State
 		public override void Exit() {
 			
 		}
+		
+		public override void Update(double delta) {
+			AnimatePlayer();
+		}
 
 		public override void PhysicsUpdate(double delta) {
 			
 		}
 
-		public override void Update(double delta) {
-			AnimatePlayer();
-		}
     #endregion
 
     #region My Methods

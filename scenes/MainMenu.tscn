@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dms6hbeegktrt"]
+[gd_scene load_steps=4 format=3 uid="uid://dms6hbeegktrt"]
 
 [ext_resource type="Script" path="res://scritps/scenes/MainMenu.cs" id="1_jox6e"]
+[ext_resource type="Texture2D" uid="uid://ckt1bf552nfsf" path="res://media/sprites/icons/icon.svg" id="2_su2pw"]
+[ext_resource type="PackedScene" uid="uid://i772jdaf52j7" path="res://prefabs/entity/player/Player.tscn" id="3_54lif"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_jox6e")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-12, 266)
+scale = Vector2(3.29688, 3.29688)
+texture = ExtResource("2_su2pw")
+
+[node name="Player" parent="." instance=ExtResource("3_54lif")]
+position = Vector2(-4, -1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://i772jdaf52j7"]
+[gd_scene load_steps=16 format=3 uid="uid://i772jdaf52j7"]
 
 [ext_resource type="Texture2D" uid="uid://b1ypnwiekwggw" path="res://media/sprites/entity/MainCharacter.png" id="1_k1rww"]
 [ext_resource type="Script" path="res://scritps/entity/player/Player.cs" id="1_n3ng4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scritps/entity/player/GunRotationPoint.cs" id="3_t3qmf"]
 [ext_resource type="Texture2D" uid="uid://bk7xo161inmwv" path="res://media/sprites/weapons/AK47.png" id="4_tjq36"]
 [ext_resource type="Script" path="res://scritps/fsm/states/player/PlayerIdle.cs" id="6_nown1"]
+[ext_resource type="Script" path="res://scritps/fsm/states/player/PlayerMoveFloor.cs" id="7_lvl02"]
 
 [sub_resource type="Animation" id="Animation_rku57"]
 resource_name = "idle"
@@ -120,12 +121,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gn1v6"]
 size = Vector2(10, 14)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("fsm", "idleState")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerSprite", "fsm", "idleState", "moveOnFloorState")]
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_n3ng4")
+playerSprite = NodePath("CharacterComponents/PlayerSprite")
 fsm = NodePath("FSM")
 idleState = NodePath("FSM/IdleState")
+moveOnFloorState = NodePath("FSM/MoveOnFloorState")
 
 [node name="CharacterComponents" type="Node2D" parent="."]
 
@@ -144,8 +147,9 @@ libraries = {
 "": SubResource("AnimationLibrary_uiwki")
 }
 
-[node name="GunRotationPoint" type="Marker2D" parent="CharacterComponents"]
+[node name="GunRotationPoint" type="Marker2D" parent="CharacterComponents" node_paths=PackedStringArray("gunSprite")]
 script = ExtResource("3_t3qmf")
+gunSprite = NodePath("WeaponSprite")
 
 [node name="WeaponSprite" type="Sprite2D" parent="CharacterComponents/GunRotationPoint"]
 position = Vector2(17, 1)
@@ -167,6 +171,11 @@ initialState = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer")]
 script = ExtResource("6_nown1")
+player = NodePath("../..")
+animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
+
+[node name="MoveOnFloorState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer")]
+script = ExtResource("7_lvl02")
 player = NodePath("../..")
 animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
 

@@ -4,8 +4,19 @@ using System;
 public static class GameResources {
 	#region Variables
 		// [Export] private int vairbaleInEditor;
+		#region Resources Path
+			public static string bulletPath = "";
+		#endregion
+
+		#region Autloads Path
+			public static string GlobalPath = "/root/Global";
+		#endregion
+
 		#region Physics
 			public static float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+			public static float playerSpeed = 150F;
+			public static float jumpSpeed = -400;
+
 		#endregion
 
 		#region Player Animations
