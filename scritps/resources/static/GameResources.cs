@@ -22,6 +22,7 @@ public static class GameResources {
 		#region Player Animations
 			public static string playerIdleAnimation = "idle";
 			public static string playerWalkAnimation = "walk";
+			public static string playerPunchAnimation = "punch";
 			public static string playerRunAnimation = "run";
 			public static string playerJumpAnimation = "jump";
 			public static string playerFallAnimation = "fall";

@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 public partial class Player : CharacterBody2D {
 	#region Variables
 		[Export] private Sprite2D playerSprite;
+		[Export] private Marker2D shootPoint;
 
 
 		[ExportGroup("Finite State Machine")]
@@ -73,6 +74,12 @@ public partial class Player : CharacterBody2D {
 
 			private bool CanMoveOnFloor() => directionInput != 0 || directionLerp != 0;
 			private bool CanIdle() => directionInput == 0 && !isJumpingInput;
+		#endregion
+
+		#region Shoot
+			private void Shoot() {
+				
+			}
 		#endregion
 	#endregion
 

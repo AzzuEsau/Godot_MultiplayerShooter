@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ck5i8f20wb6g1"]
 
-[ext_resource type="Script" path="res://scritps/fsm/FiniteStateMachine.cs" id="1_e4h1q"]
+[ext_resource type="Script" path="res://scritps/fsm/base/FiniteStateMachine.cs" id="1_e4h1q"]
 
 [node name="FSM" type="Node"]
 script = ExtResource("1_e4h1q")
