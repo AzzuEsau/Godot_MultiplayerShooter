@@ -26,8 +26,9 @@ public partial class GunRotationPoint : Marker2D {
 
     #region My Methods
 		private void FlipGun() {
-			float orientation = Mathf.RadToDeg(Rotation) % 360;
-			GD.Print(orientation);
+			float orientation = RotationDegrees % 360;
+			while(orientation < 0) orientation += 360;
+			Rotation = Mathf.DegToRad(orientation);
 			gunSprite.FlipV = orientation > 90 && orientation < 270;
 		}
     #endregion
