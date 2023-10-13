@@ -5,7 +5,6 @@ public partial class PlayerPunch : State {
 	#region Variables
 		[Export] private Player player;
 		[Export] private AnimationPlayer animationPlayer;
-		[Export] private GunRotationPoint gunRotationPoint;
 
 		public float slownesVelocity;
 	#endregion
@@ -18,7 +17,6 @@ public partial class PlayerPunch : State {
 		public override void _Ready() {
 			Helperuitilies.ValidateCheckNullValue(this, nameof(player), player);
 			Helperuitilies.ValidateCheckNullValue(this, nameof(animationPlayer), animationPlayer);
-			Helperuitilies.ValidateCheckNullValue(this, nameof(gunRotationPoint), gunRotationPoint);
 		}
 	#endregion
 
@@ -48,7 +46,7 @@ public partial class PlayerPunch : State {
 
     #region My Methods
 		private async void AnimatePlayer() {
-			float mouseDegress = gunRotationPoint.GetMouseDegrees();
+			float mouseDegress = player.GetMouseDegrees();
 			bool doFlipSprite = mouseDegress > 90 && mouseDegress < 270;
 			player.FlipSpriteToRight(!doFlipSprite);
 

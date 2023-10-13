@@ -1,8 +1,72 @@
-[gd_scene load_steps=2 format=3 uid="uid://dms6hbeegktrt"]
+[gd_scene load_steps=2 format=3 uid="uid://bmqt1p445ueci"]
 
 [ext_resource type="Script" path="res://scritps/scenes/MainMenu.cs" id="1_jox6e"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("canvasLayer", "hostButton", "joinButton", "playButton", "roomCodeTextEdit", "userNameTextExit", "playersIdContainer")]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_jox6e")
+canvasLayer = NodePath("CanvasLayer")
+hostButton = NodePath("CanvasLayer/HBoxContainer/Button")
+joinButton = NodePath("CanvasLayer/HBoxContainer/Button2")
+playButton = NodePath("CanvasLayer/HBoxContainer/Button3")
+roomCodeTextEdit = NodePath("CanvasLayer/RoomCodeLineEdit")
+userNameTextExit = NodePath("CanvasLayer/UserName")
+playersIdContainer = NodePath("CanvasLayer/users")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UserName" type="LineEdit" parent="CanvasLayer"]
+offset_left = 351.0
+offset_top = 157.0
+offset_right = 932.0
+offset_bottom = 202.0
+placeholder_text = "User Name"
+max_length = 100
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="RoomCodeLineEdit" type="LineEdit" parent="CanvasLayer"]
+offset_left = 541.0
+offset_top = 386.0
+offset_right = 745.0
+offset_bottom = 431.0
+placeholder_text = "ROOM CODE"
+max_length = 5
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -20.0
+offset_right = 102.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Host"
+
+[node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "JOIN"
+
+[node name="Button3" type="Button" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Play"
+
+[node name="users" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 598.0
+offset_top = 497.0
+offset_right = 678.0
+offset_bottom = 537.0

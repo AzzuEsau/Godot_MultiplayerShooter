@@ -4,7 +4,10 @@ using System;
 public partial class Player : CharacterBody2D {
 	#region Variables
 		[Export] private Sprite2D playerSprite;
-		[Export] private Marker2D shootPoint;
+		[Export] private Marker2D gunRotation;
+		[Export] private Sprite2D gunSprite;
+		[Export] private Label playerNameLabel;
+		[Export] private MultiplayerSynchronizer multiplayerSynchronizer;
 
 		#region FNS
 			[ExportGroup("Finite State Machine")]
@@ -20,6 +23,8 @@ public partial class Player : CharacterBody2D {
 		#region Inputs
 			public bool isShootingInput {get; protected set;}
 			public bool isRunningInput {get; protected set;}
+
+			private float mouseRotation;
 
 			#region Direction Effects
 				public float directionInput {get; protected set;}
@@ -50,17 +55,26 @@ public partial class Player : CharacterBody2D {
 
 	#region Godot Methdos
 		public override void _Ready() {
+			multiplayerSynchronizer.SetMultiplayerAuthority(int.Parse(Name));
 		}
 
 		public override void _Process(double delta) {
 		}
 
 		public override void _PhysicsProcess(double delta) {
+			if(multiplayerSynchronizer.GetMultiplayerAuthority() != int.Parse(Name)) return;
+
 			ReadInput();
 			ChangeStates();
 			ApplyMovementLerp(delta);
 
+			RotateGun();
+
 			PlayJumpDetails(delta);
+		}
+
+		public void SetPlayer(string name) {
+			playerNameLabel.Text = name;
 		}
     #endregion
 
@@ -133,6 +147,18 @@ public partial class Player : CharacterBody2D {
 		#endregion
 
 		#region Shoot
+			private void RotateGun() {
+				gunRotation.LookAt(GetGlobalMousePosition());
+
+				mouseRotation = gunRotation.RotationDegrees % 360;
+				while(mouseRotation < 0) mouseRotation += 360;
+				
+				gunRotation.Rotation = Mathf.DegToRad(mouseRotation);
+				gunSprite.FlipV = mouseRotation > 90 && mouseRotation < 270;
+			}
+
+			public float GetMouseDegrees() => mouseRotation;
+
 			private void Shoot() {
 				
 			}

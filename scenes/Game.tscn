@@ -1,18 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://3eucxxtg7evi"]
 
 [ext_resource type="Texture2D" uid="uid://ckt1bf552nfsf" path="res://media/sprites/icons/icon.svg" id="1_6ka47"]
-[ext_resource type="PackedScene" uid="uid://i772jdaf52j7" path="res://prefabs/entity/player/Player.tscn" id="2_ay0gb"]
+[ext_resource type="Script" path="res://scritps/scenes/GameManager.cs" id="1_byje5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqpkm"]
 size = Vector2(128.606, 126.787)
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawnPointBox")]
+script = ExtResource("1_byje5")
+spawnPointBox = NodePath("PlayerSpawn")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-12, 704)
-scale = Vector2(8.20313, 8.20313)
+position = Vector2(639, 1330)
+scale = Vector2(11, 11)
 collision_layer = 4
 collision_mask = 2
+metadata/_edit_group_ = true
 
 [node name="Icon" type="Sprite2D" parent="StaticBody2D"]
 texture = ExtResource("1_6ka47")
@@ -21,13 +24,13 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_eqpkm")
 
-[node name="Player" parent="." node_paths=PackedStringArray("playerSprite", "shootPoint", "fsm", "idleState", "moveOnFloorState", "punchState", "jumpState", "airState") instance=ExtResource("2_ay0gb")]
-position = Vector2(-4, -1)
-playerSprite = NodePath("")
-shootPoint = NodePath("")
-fsm = NodePath("")
-idleState = NodePath("")
-moveOnFloorState = NodePath("")
-punchState = NodePath("")
-jumpState = NodePath("")
-airState = NodePath("")
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+
+[node name="0" type="Marker2D" parent="PlayerSpawn"]
+position = Vector2(153, 463)
+
+[node name="1" type="Marker2D" parent="PlayerSpawn"]
+position = Vector2(659, 463)
+
+[node name="2" type="Marker2D" parent="PlayerSpawn"]
+position = Vector2(1122, 463)

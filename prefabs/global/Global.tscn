@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=3 uid="uid://khh3wmstasgm"]
+
+[ext_resource type="Script" path="res://scritps/global/autoload/Global.cs" id="1_e64ue"]
+[ext_resource type="PackedScene" uid="uid://bmqt1p445ueci" path="res://scenes/MainMenu.tscn" id="2_5qm42"]
+[ext_resource type="PackedScene" uid="uid://cssu3ladx1ccx" path="res://scenes/Lobby.tscn" id="2_m8hxb"]
+[ext_resource type="PackedScene" uid="uid://3eucxxtg7evi" path="res://scenes/Game.tscn" id="4_l0g4a"]
+[ext_resource type="PackedScene" uid="uid://i772jdaf52j7" path="res://prefabs/entity/player/Player.tscn" id="5_08xk8"]
+
+[node name="Global" type="Node2D"]
+script = ExtResource("1_e64ue")
+mainMenuScene = ExtResource("2_5qm42")
+lobbyScene = ExtResource("2_m8hxb")
+gameScene = ExtResource("4_l0g4a")
+playerPrefab = ExtResource("5_08xk8")
