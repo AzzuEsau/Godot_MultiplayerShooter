@@ -55,7 +55,7 @@ public partial class Player : CharacterBody2D {
 		}
 
 		public override void _Process(double delta) {
-			GD.Print(Velocity);
+
 		}
 
 		public override void _PhysicsProcess(double delta) {
@@ -91,6 +91,14 @@ public partial class Player : CharacterBody2D {
 				if(IsOnFloor()) coyoteTime = maxCoyoteTime;
 				else if(coyoteTime > 0) coyoteTime -= (float)delta;
 			}
+
+			private bool CanJumpInFloor() {
+				return IsOnFloor() && (jumpBufferTimer > 0 || isJumpingInput);
+			}
+
+			private bool CanJumpInAirBuffer() {
+				return coyoteTime > 0 && isJumpingInput && Velocity.Y >= 0;
+			}
 		#endregion
 
 		#region Spirte
@@ -122,7 +130,7 @@ public partial class Player : CharacterBody2D {
 				else if(CanIdle()) idleState.EmitSignal(State.SignalName.Transition, idleState, idleState.Name);
 			}
 
-			private bool CanJump() => (IsOnFloor() && (jumpBufferTimer > 0 || isJumpingInput)) || (coyoteTime > 0 && isJumpingInput);
+			private bool CanJump() => CanJumpInAirBuffer() || CanJumpInFloor();
 			private bool CanAir() => !IsOnFloor();
 			private bool CanPunch() => isShootingInput;
 			private bool CanMoveOnFloor() => (directionInput != 0 || directionLerp != 0) && IsOnFloor();

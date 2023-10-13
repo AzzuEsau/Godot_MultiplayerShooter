@@ -20,7 +20,8 @@ public partial class PlayerJump : State {
 
 	#region States Methdos
 		public override void Enter() {
-			
+			player.jumpBufferTimer = 0;
+			player.coyoteTime = 0;
 		}
 
 		public override void Exit() {
