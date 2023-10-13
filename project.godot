@@ -8,6 +8,12 @@
 
 config_version=5
 
+[MonoCustomResourceRegistry]
+
+ClassPrefix=""
+SearchType=0
+ResourceScriptDirectories=["res://"]
+
 [application]
 
 config/name="MultiplayerShooter"
@@ -17,7 +23,7 @@ config/icon="res://media/sprites/icons/icon.svg"
 
 [autoload]
 
-Global="*res://scritps/resources/autoload/Global.cs"
+Global="*res://scritps/global/autoload/Global.cs"
 
 [display]
 
@@ -29,6 +35,10 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="MultiplayerShooter"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Godot-Mono-CustomResourceRegistry-main/addons/MonoCustomResourceRegistry/plugin.cfg")
 
 [input]
 

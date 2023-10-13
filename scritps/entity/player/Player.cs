@@ -6,17 +6,16 @@ public partial class Player : CharacterBody2D {
 		[Export] private Sprite2D playerSprite;
 		[Export] private Marker2D shootPoint;
 
-
-		[ExportGroup("Finite State Machine")]
-			[Export] private FiniteStateMachine fsm;
-		[ExportSubgroup("States")]
-			[Export] private PlayerIdle idleState;
-			[Export] private PlayerMoveFloor moveOnFloorState;
-			[Export] private PlayerPunch punchState;
-			[Export] private PlayerJump jumpState;
-			[Export] private PlayerAir airState;
-
-
+		#region FNS
+			[ExportGroup("Finite State Machine")]
+				[Export] private FiniteStateMachine fsm;
+			[ExportSubgroup("States")]
+				[Export] private PlayerIdle idleState;
+				[Export] private PlayerMoveFloor moveOnFloorState;
+				[Export] private PlayerPunch punchState;
+				[Export] private PlayerJump jumpState;
+				[Export] private PlayerAir airState;
+		#endregion
 
 		#region Inputs
 			public bool isShootingInput {get; protected set;}
@@ -51,11 +50,9 @@ public partial class Player : CharacterBody2D {
 
 	#region Godot Methdos
 		public override void _Ready() {
-
 		}
 
 		public override void _Process(double delta) {
-
 		}
 
 		public override void _PhysicsProcess(double delta) {
@@ -92,13 +89,9 @@ public partial class Player : CharacterBody2D {
 				else if(coyoteTime > 0) coyoteTime -= (float)delta;
 			}
 
-			private bool CanJumpInFloor() {
-				return IsOnFloor() && (jumpBufferTimer > 0 || isJumpingInput);
-			}
+			private bool CanJumpInFloor() => IsOnFloor() && (jumpBufferTimer > 0 || isJumpingInput);
 
-			private bool CanJumpInAirBuffer() {
-				return coyoteTime > 0 && isJumpingInput && Velocity.Y >= 0;
-			}
+			private bool CanJumpInAirBuffer() => coyoteTime > 0 && isJumpingInput && Velocity.Y >= 0;
 		#endregion
 
 		#region Spirte
@@ -114,6 +107,8 @@ public partial class Player : CharacterBody2D {
 				
 				if(isKeepingJumpingInput) isKeepingJumpingInput = !Input.IsActionJustReleased(GameResources.jumpKey);
 			}
+
+			private bool isDirectionActive() => directionInput != 0 || directionLerp != 0;
 		#endregion
 
 		#region States
@@ -133,7 +128,7 @@ public partial class Player : CharacterBody2D {
 			private bool CanJump() => CanJumpInAirBuffer() || CanJumpInFloor();
 			private bool CanAir() => !IsOnFloor();
 			private bool CanPunch() => isShootingInput;
-			private bool CanMoveOnFloor() => (directionInput != 0 || directionLerp != 0) && IsOnFloor();
+			private bool CanMoveOnFloor() => isDirectionActive() && IsOnFloor();
 			private bool CanIdle() => directionInput == 0 && !isJumpingInput && IsOnFloor();
 		#endregion
 

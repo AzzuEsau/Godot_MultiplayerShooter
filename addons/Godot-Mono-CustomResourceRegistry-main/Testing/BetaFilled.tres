@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Testing/BetaResource.cs" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+TextField = "Beta Instance"
+TextField2 = "Alpha Overwrite Beta!!"
+FloatArrayField = PackedFloat32Array( 0.4, 0.5 )
+FloatField = 34.3
+TextField = "External beta instance"
+TextField2 = "Some Text"

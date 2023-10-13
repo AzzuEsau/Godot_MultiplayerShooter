@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ubkcmlu3k7bn"]
+
+[ext_resource type="Script" path="res://scritps/resources/weapon/WeaponResource.cs" id="1_exuvb"]
+
+[resource]
+script = ExtResource("1_exuvb")
+shootLocation = Vector2(0, 0)

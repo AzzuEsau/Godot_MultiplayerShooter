@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[MonoCustomResourceRegistry]
+
+SearchType=0
+ResourceScriptDirectories=["res://"]
+ClassPrefix="__"
+
+[application]
+
+config/name="Godot-Mono-CustomResourceRegistry"
+run/main_scene="res://Testing/Test.tscn"
+config/features=PackedStringArray("4.0", "C#")
+config/icon="res://Testing/icon.png"
+
+[dotnet]
+
+project/assembly_name="Godot-Mono-CustomResourceRegistry"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/MonoCustomResourceRegistry/plugin.cfg")
+
+[mono]
+
+project/assembly_name="Godot-Mono-CustomResourceRegistry"
+
+[rendering]
+
+environment/default_environment="res://Testing/default_env.tres"
