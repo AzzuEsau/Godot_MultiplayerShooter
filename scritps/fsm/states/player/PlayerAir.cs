@@ -44,10 +44,18 @@ public partial class PlayerAir : State {
 		}
 
 		private void MovePlayer() {
-			if(player.Velocity.Y < 0 && player.isJumpingInput) player.ApplyGravity(.65f);
-			else player.ApplyGravity(); 
+			// Move the player vertical
+			if(player.Velocity.Y < 0 && player.isKeepingJumpingInput) player.ApplyGravity(.65f);
+			else {
+				player.ApplyGravity(); 
+				player.isKeepingJumpingInput = false;
+			}
 
-			player.ApplyHorizontalVelocity(player.directionInput);
+			// Move the player horizontal
+			if(player.directionInput == 0) player.ApplyHorizontalVelocity(player.directionLerp);
+			else player.ApplyHorizontalVelocity(player.directionInput);
+
+
 			player.MoveAndSlide();
 		}
     #endregion

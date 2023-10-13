@@ -24,7 +24,7 @@ public partial class PlayerJump : State {
 		}
 
 		public override void Exit() {
-			
+			player.isKeepingJumpingInput = true;
 		}
 
 		public override void Update(double delta) {
@@ -42,7 +42,7 @@ public partial class PlayerJump : State {
 		}
 
 		private void MovePlayer() {
-			player.Velocity = new Vector2(player.Velocity.X, player.Velocity.Y - GameResources.jumpSpeed);
+			player.Velocity = new Vector2(player.Velocity.X, -GameResources.jumpSpeed);
 			player.MoveAndSlide();
 		}
     #endregion

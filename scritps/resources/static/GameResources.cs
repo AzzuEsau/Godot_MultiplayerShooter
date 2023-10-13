@@ -26,6 +26,8 @@ public static class GameResources {
 			public static string playerRunAnimation = "run";
 			public static string playerJumpAnimation = "jump";
 			public static string playerFallAnimation = "fall";
+			public static string playerHurtAnimation = "hurt";
+			public static string playerDeathAnimation = "death";
 		#endregion
 
 		#region Inputs Names

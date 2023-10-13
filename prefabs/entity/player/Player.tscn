@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://i772jdaf52j7"]
+[gd_scene load_steps=22 format=3 uid="uid://i772jdaf52j7"]
 
 [ext_resource type="Texture2D" uid="uid://b1ypnwiekwggw" path="res://media/sprites/entity/MainCharacter.png" id="1_k1rww"]
 [ext_resource type="Script" path="res://scritps/entity/player/Player.cs" id="1_n3ng4"]
@@ -127,10 +127,44 @@ tracks/0/keys = {
 "values": [27, 28, 29, 30, 31, 32]
 }
 
+[sub_resource type="Animation" id="Animation_pmexb"]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [209, 210, 211]
+}
+
+[sub_resource type="Animation" id="Animation_0nwvj"]
+resource_name = "death"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [222, 223, 224, 225, 226, 227, 228, 229]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uiwki"]
 _data = {
 "RESET": SubResource("Animation_ejb14"),
+"death": SubResource("Animation_0nwvj"),
 "fall": SubResource("Animation_elaco"),
+"hurt": SubResource("Animation_pmexb"),
 "idle": SubResource("Animation_rku57"),
 "jump": SubResource("Animation_q4lhk"),
 "punch": SubResource("Animation_bimv7"),
