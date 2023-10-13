@@ -175,26 +175,34 @@ _data = {
 size = Vector2(10, 14)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8wdcr"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/sync = true
+properties/0/path = NodePath("CharacterComponents/AnimationPlayer:current_animation")
+properties/0/spawn = false
+properties/0/sync = false
 properties/0/watch = false
-properties/1/path = NodePath("CharacterComponents/AnimationPlayer:current_animation")
-properties/1/spawn = false
-properties/1/sync = false
+properties/1/path = NodePath("CharacterComponents/PlayerSprite:frame")
+properties/1/spawn = true
+properties/1/sync = true
 properties/1/watch = false
-properties/2/path = NodePath("CharacterComponents/GunRotationPoint:rotation")
+properties/2/path = NodePath("CharacterComponents/PlayerSprite:flip_h")
 properties/2/spawn = true
 properties/2/sync = true
 properties/2/watch = false
-properties/3/path = NodePath("CharacterComponents/PlayerSprite:frame")
-properties/3/spawn = true
-properties/3/sync = true
+properties/3/path = NodePath(".:syncPos")
+properties/3/spawn = false
+properties/3/sync = false
 properties/3/watch = false
-properties/4/path = NodePath("CharacterComponents/PlayerSprite:flip_h")
-properties/4/spawn = true
-properties/4/sync = true
+properties/4/path = NodePath(".:syncRotation")
+properties/4/spawn = false
+properties/4/sync = false
 properties/4/watch = false
+properties/5/path = NodePath(".:position")
+properties/5/spawn = true
+properties/5/sync = true
+properties/5/watch = false
+properties/6/path = NodePath("CharacterComponents/GunRotationPoint:rotation")
+properties/6/spawn = true
+properties/6/sync = true
+properties/6/watch = false
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerSprite", "gunRotation", "gunSprite", "playerNameLabel", "multiplayerSynchronizer", "fsm", "idleState", "moveOnFloorState", "punchState", "jumpState", "airState")]
 collision_layer = 2
@@ -279,8 +287,6 @@ shape = SubResource("RectangleShape2D_gn1v6")
 debug_color = Color(0.341176, 0.619608, 0, 0.419608)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_interval = 0.01
-delta_interval = 0.001
 replication_config = SubResource("SceneReplicationConfig_8wdcr")
 
 [node name="Label" type="Label" parent="."]
@@ -289,3 +295,4 @@ offset_top = -30.0
 offset_right = 22.0
 offset_bottom = -4.0
 text = "name"
+horizontal_alignment = 1

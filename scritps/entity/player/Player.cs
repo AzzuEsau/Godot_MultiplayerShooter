@@ -45,8 +45,15 @@ public partial class Player : CharacterBody2D {
 			#endregion
 		#endregion
 
+		#region Multiplayer
+			public Vector2 syncPos = new Vector2();
+			public float syncRotation = 0;
+		#endregion
+
 		public bool canChangeState = true;
 		public bool canChangeAniamtion = true;
+
+		private bool isOwner;
 	#endregion
 
 	#region Signals
@@ -56,13 +63,14 @@ public partial class Player : CharacterBody2D {
 	#region Godot Methdos
 		public override void _Ready() {
 			multiplayerSynchronizer.SetMultiplayerAuthority(int.Parse(Name));
+			isOwner = multiplayerSynchronizer.GetMultiplayerAuthority() == int.Parse(Name);
 		}
 
 		public override void _Process(double delta) {
 		}
 
 		public override void _PhysicsProcess(double delta) {
-			if(multiplayerSynchronizer.GetMultiplayerAuthority() != int.Parse(Name)) return;
+			if(!isOwner) return;
 
 			ReadInput();
 			ChangeStates();
@@ -71,6 +79,10 @@ public partial class Player : CharacterBody2D {
 			RotateGun();
 
 			PlayJumpDetails(delta);
+
+			syncPos = GlobalPosition;
+			syncRotation = gunRotation.RotationDegrees;
+
 		}
 
 		public void SetPlayer(string name) {
