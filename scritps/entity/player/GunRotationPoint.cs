@@ -4,6 +4,8 @@ using System;
 public partial class GunRotationPoint : Marker2D {
 	#region Variables
 		[Export] private Sprite2D gunSprite;
+
+		private float orientation;
 	#endregion
 
 	#region Signals
@@ -26,11 +28,13 @@ public partial class GunRotationPoint : Marker2D {
 
     #region My Methods
 		private void FlipGun() {
-			float orientation = RotationDegrees % 360;
+			orientation = RotationDegrees % 360;
 			while(orientation < 0) orientation += 360;
 			Rotation = Mathf.DegToRad(orientation);
 			gunSprite.FlipV = orientation > 90 && orientation < 270;
 		}
+
+		public float GetMouseDegrees() => orientation;
     #endregion
 
     #region Events

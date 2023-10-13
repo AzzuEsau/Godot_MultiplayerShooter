@@ -39,7 +39,9 @@ public partial class PlayerMoveFloor : State {
 
     #region My Methods
 		private void MovePlayer() {
-			player.ApplyHorizontalVelocity(player.directionLerp);
+			player.ApplyGravity();
+			if(player.isRunningInput) player.ApplyHorizontalVelocity(player.directionLerp, 1.5f);
+			else player.ApplyHorizontalVelocity(player.directionLerp);			
 			player.MoveAndSlide();
 		}
 
@@ -48,7 +50,11 @@ public partial class PlayerMoveFloor : State {
 		}
 
 		private void AnimatePlayer() {
-			if(player.directionInput != 0 || player.directionLerp != 0) animationPlayer.Play(GameResources.playerWalkAnimation);
+			if(player.directionInput != 0) 
+				if(player.isRunningInput)
+					animationPlayer.Play(GameResources.playerRunAnimation);
+				else if(player.directionLerp != 0)
+					animationPlayer.Play(GameResources.playerWalkAnimation);
 		}
     #endregion
 

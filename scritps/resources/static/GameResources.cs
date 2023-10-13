@@ -15,7 +15,7 @@ public static class GameResources {
 		#region Physics
 			public static float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 			public static float playerSpeed = 150F;
-			public static float jumpSpeed = -400;
+			public static float jumpSpeed = 250F;
 
 		#endregion
 
@@ -36,6 +36,8 @@ public static class GameResources {
 			public static string shootKey = "shoot";
 			public static string jumpKey = "jump";
 			public static string reloadKey = "reload";
+			public static string runKey = "run";
+			public static string dropWeaponKey = "drop";
 		#endregion
 	#endregion
 

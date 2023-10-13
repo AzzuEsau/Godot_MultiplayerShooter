@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://i772jdaf52j7"]
+[gd_scene load_steps=20 format=3 uid="uid://i772jdaf52j7"]
 
 [ext_resource type="Texture2D" uid="uid://b1ypnwiekwggw" path="res://media/sprites/entity/MainCharacter.png" id="1_k1rww"]
 [ext_resource type="Script" path="res://scritps/entity/player/Player.cs" id="1_n3ng4"]
@@ -7,23 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bk7xo161inmwv" path="res://media/sprites/weapons/AK47.png" id="4_tjq36"]
 [ext_resource type="Script" path="res://scritps/fsm/states/player/PlayerIdle.cs" id="6_nown1"]
 [ext_resource type="Script" path="res://scritps/fsm/states/player/PlayerMoveFloor.cs" id="7_lvl02"]
-
-[sub_resource type="Animation" id="Animation_rku57"]
-resource_name = "idle"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5, 6]
-}
+[ext_resource type="Script" path="res://scritps/fsm/states/player/PlayerPunch.cs" id="8_gibyl"]
+[ext_resource type="Script" path="res://scritps/fsm/states/player/PlayerJump.cs" id="9_kjbse"]
+[ext_resource type="Script" path="res://scritps/fsm/states/player/PlayerAir.cs" id="10_4211e"]
 
 [sub_resource type="Animation" id="Animation_ejb14"]
 length = 0.001
@@ -38,57 +24,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_5if8m"]
-resource_name = "walk"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [27, 28, 29, 30, 31, 32]
-}
-
-[sub_resource type="Animation" id="Animation_8uxvq"]
-resource_name = "run"
-length = 0.7
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [40, 40, 41, 42, 43, 44, 45, 46, 47]
-}
-
-[sub_resource type="Animation" id="Animation_q4lhk"]
-resource_name = "jump"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [53]
 }
 
 [sub_resource type="Animation" id="Animation_elaco"]
@@ -108,6 +43,40 @@ tracks/0/keys = {
 "values": [57]
 }
 
+[sub_resource type="Animation" id="Animation_rku57"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_q4lhk"]
+resource_name = "jump"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [53]
+}
+
 [sub_resource type="Animation" id="Animation_bimv7"]
 resource_name = "punch"
 length = 0.4
@@ -124,6 +93,40 @@ tracks/0/keys = {
 "values": [183, 184, 185, 186, 187]
 }
 
+[sub_resource type="Animation" id="Animation_8uxvq"]
+resource_name = "run"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 40, 41, 42, 43, 44, 45, 46, 47]
+}
+
+[sub_resource type="Animation" id="Animation_5if8m"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterComponents/PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [27, 28, 29, 30, 31, 32]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uiwki"]
 _data = {
 "RESET": SubResource("Animation_ejb14"),
@@ -138,7 +141,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gn1v6"]
 size = Vector2(10, 14)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerSprite", "shootPoint", "fsm", "idleState", "moveOnFloorState")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerSprite", "shootPoint", "fsm", "idleState", "moveOnFloorState", "punchState", "jumpState", "airState")]
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_n3ng4")
@@ -147,6 +150,9 @@ shootPoint = NodePath("CharacterComponents/GunRotationPoint/BulletSpawnPoint")
 fsm = NodePath("FSM")
 idleState = NodePath("FSM/IdleState")
 moveOnFloorState = NodePath("FSM/MoveOnFloorState")
+punchState = NodePath("FSM/PunchState")
+jumpState = NodePath("FSM/JumpState")
+airState = NodePath("FSM/AirState")
 
 [node name="CharacterComponents" type="Node2D" parent="."]
 
@@ -177,6 +183,10 @@ texture = ExtResource("4_tjq36")
 [node name="BulletSpawnPoint" type="Marker2D" parent="CharacterComponents/GunRotationPoint"]
 position = Vector2(26, 0)
 
+[node name="RayCast2D" type="RayCast2D" parent="CharacterComponents/GunRotationPoint"]
+target_position = Vector2(20, 0)
+collision_mask = 4
+
 [node name="ComponentsPrefabs" type="Node2D" parent="."]
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
@@ -194,6 +204,22 @@ animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
 
 [node name="MoveOnFloorState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer")]
 script = ExtResource("7_lvl02")
+player = NodePath("../..")
+animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
+
+[node name="PunchState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer", "gunRotationPoint")]
+script = ExtResource("8_gibyl")
+player = NodePath("../..")
+animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
+gunRotationPoint = NodePath("../../CharacterComponents/GunRotationPoint")
+
+[node name="JumpState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer")]
+script = ExtResource("9_kjbse")
+player = NodePath("../..")
+animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
+
+[node name="AirState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer")]
+script = ExtResource("10_4211e")
 player = NodePath("../..")
 animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
 

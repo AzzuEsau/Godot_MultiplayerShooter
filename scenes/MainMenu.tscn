@@ -1,16 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://dms6hbeegktrt"]
+[gd_scene load_steps=5 format=3 uid="uid://dms6hbeegktrt"]
 
 [ext_resource type="Script" path="res://scritps/scenes/MainMenu.cs" id="1_jox6e"]
 [ext_resource type="Texture2D" uid="uid://ckt1bf552nfsf" path="res://media/sprites/icons/icon.svg" id="2_su2pw"]
 [ext_resource type="PackedScene" uid="uid://i772jdaf52j7" path="res://prefabs/entity/player/Player.tscn" id="3_54lif"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ravx"]
+size = Vector2(128.606, 126.787)
+
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_jox6e")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(-12, 266)
-scale = Vector2(3.29688, 3.29688)
+position = Vector2(-12, 704)
+scale = Vector2(8.20313, 8.20313)
 texture = ExtResource("2_su2pw")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+shape = SubResource("RectangleShape2D_3ravx")
 
 [node name="Player" parent="." instance=ExtResource("3_54lif")]
 position = Vector2(-4, -1)
