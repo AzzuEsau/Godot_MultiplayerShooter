@@ -37,8 +37,10 @@ public partial class PlayerAir : State {
 
     #region My Methods
 		private void AnimatePlayer() {
-			if(player.Velocity.Y < 0) animationPlayer.Play(GameResources.playerJumpAnimation);
-			else animationPlayer.Play(GameResources.playerFallAnimation);
+			// if(player.Velocity.Y < 0) animationPlayer.Play(GameResources.playerJumpAnimation);
+			// else animationPlayer.Play(GameResources.playerFallAnimation);
+			if(player.Velocity.Y < 0) player.PlayAnimation(GameResources.playerJumpAnimation);
+			else player.PlayAnimation(GameResources.playerFallAnimation);
 
 			if(player.directionInput != 0) player.FlipSpriteToRight(player.directionInput > 0);
 		}

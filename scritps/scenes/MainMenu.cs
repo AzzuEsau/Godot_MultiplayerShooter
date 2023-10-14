@@ -48,6 +48,11 @@ public partial class MainMenu : Control {
 			Multiplayer.PeerDisconnected += Multiplayer_PeerDisconnected;
 			Multiplayer.ConnectedToServer += Multiplayer_ConnectedToServer;
 			Multiplayer.ConnectionFailed += Multiplayer_ConnectionFailed;
+
+
+			if(OS.GetCmdlineArgs().Contains("--server")) {
+				CreateENetMultiplayerPeer();
+			}
 		}
 
 		public override void _Process(double delta) {

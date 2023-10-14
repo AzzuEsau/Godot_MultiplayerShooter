@@ -52,9 +52,9 @@ public partial class PlayerMoveFloor : State {
 		private void AnimatePlayer() {
 			if(player.directionInput != 0) 
 				if(player.isRunningInput)
-					animationPlayer.Play(GameResources.playerRunAnimation);
+					player.PlayAnimation(GameResources.playerRunAnimation);
 				else if(player.directionLerp != 0)
-					animationPlayer.Play(GameResources.playerWalkAnimation);
+					player.PlayAnimation(GameResources.playerWalkAnimation);
 		}
     #endregion
 

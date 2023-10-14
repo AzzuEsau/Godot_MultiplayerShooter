@@ -175,36 +175,20 @@ _data = {
 size = Vector2(10, 14)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8wdcr"]
-properties/0/path = NodePath("CharacterComponents/AnimationPlayer:current_animation")
-properties/0/spawn = false
-properties/0/sync = false
+properties/0/path = NodePath("CharacterComponents/PlayerSprite:flip_h")
+properties/0/spawn = true
+properties/0/sync = true
 properties/0/watch = false
-properties/1/path = NodePath("CharacterComponents/PlayerSprite:frame")
+properties/1/path = NodePath("CharacterComponents/GunRotationPoint:rotation")
 properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
-properties/2/path = NodePath("CharacterComponents/PlayerSprite:flip_h")
+properties/2/path = NodePath(".:position")
 properties/2/spawn = true
 properties/2/sync = true
 properties/2/watch = false
-properties/3/path = NodePath(".:syncPos")
-properties/3/spawn = false
-properties/3/sync = false
-properties/3/watch = false
-properties/4/path = NodePath(".:syncRotation")
-properties/4/spawn = false
-properties/4/sync = false
-properties/4/watch = false
-properties/5/path = NodePath(".:position")
-properties/5/spawn = true
-properties/5/sync = true
-properties/5/watch = false
-properties/6/path = NodePath("CharacterComponents/GunRotationPoint:rotation")
-properties/6/spawn = true
-properties/6/sync = true
-properties/6/watch = false
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerSprite", "gunRotation", "gunSprite", "playerNameLabel", "multiplayerSynchronizer", "fsm", "idleState", "moveOnFloorState", "punchState", "jumpState", "airState") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerSprite", "gunRotation", "gunSprite", "playerNameLabel", "multiplayerSynchronizer", "animationPlayer", "fsm", "idleState", "moveOnFloorState", "punchState", "jumpState", "airState") groups=["Player"]]
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_n3ng4")
@@ -213,6 +197,7 @@ gunRotation = NodePath("CharacterComponents/GunRotationPoint")
 gunSprite = NodePath("CharacterComponents/GunRotationPoint/WeaponSprite")
 playerNameLabel = NodePath("Label")
 multiplayerSynchronizer = NodePath("MultiplayerSynchronizer")
+animationPlayer = NodePath("CharacterComponents/AnimationPlayer")
 fsm = NodePath("FSM")
 idleState = NodePath("FSM/IdleState")
 moveOnFloorState = NodePath("FSM/MoveOnFloorState")

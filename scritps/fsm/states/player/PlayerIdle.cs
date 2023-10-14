@@ -39,7 +39,7 @@ public partial class PlayerIdle : State {
 
     #region My Methods
 		private void AnimatePlayer() {
-			animationPlayer.Play(GameResources.playerIdleAnimation);
+			player.PlayAnimation(GameResources.playerIdleAnimation);
 		}
 
 		private void MovePlayer() {

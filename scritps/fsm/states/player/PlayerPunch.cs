@@ -50,7 +50,7 @@ public partial class PlayerPunch : State {
 			bool doFlipSprite = mouseDegress > 90 && mouseDegress < 270;
 			player.FlipSpriteToRight(!doFlipSprite);
 
-			animationPlayer.Play(GameResources.playerPunchAnimation);
+			player.PlayAnimation(GameResources.playerPunchAnimation);
 			await ToSignal(animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
 
 			player.canChangeState = true;

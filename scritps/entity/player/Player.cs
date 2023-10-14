@@ -8,6 +8,7 @@ public partial class Player : CharacterBody2D {
 		[Export] private Sprite2D gunSprite;
 		[Export] private Label playerNameLabel;
 		[Export] private MultiplayerSynchronizer multiplayerSynchronizer;
+		[Export] private AnimationPlayer animationPlayer;
 
 		#region FNS
 			[ExportGroup("Finite State Machine")]
@@ -54,19 +55,24 @@ public partial class Player : CharacterBody2D {
 		public bool canChangeAniamtion = true;
 
 		private bool isOwner;
-	#endregion
+    #endregion
 
-	#region Signals
-		// [Signal] public delegate void ExampleSignalEventHandler();
-	#endregion
+    #region Signals
+    // [Signal] public delegate void ExampleSignalEventHandler();
+    #endregion
 
-	#region Godot Methdos
-		public override void _Ready() {
+    #region Godot Methdos
+		public override void _EnterTree() {
 			multiplayerSynchronizer.SetMultiplayerAuthority(int.Parse(Name));
-			isOwner = multiplayerSynchronizer.GetMultiplayerAuthority() == int.Parse(Name);
+		}
+
+    	public override void _Ready() {
+			isOwner = multiplayerSynchronizer.IsMultiplayerAuthority();
+			if(!isOwner) fsm.Stop();
 		}
 
 		public override void _Process(double delta) {
+
 		}
 
 		public override void _PhysicsProcess(double delta) {
@@ -173,6 +179,18 @@ public partial class Player : CharacterBody2D {
 
 			private void Shoot() {
 				
+			}
+		#endregion
+	
+		#region Animation
+			public void PlayAnimation(string animation) {
+				// animationPlayer.Play(animation);
+				Rpc(nameof(PlayAnimationOnline), animation);
+			} 
+
+			[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+			public void PlayAnimationOnline(string animation) {
+				animationPlayer.Play(animation);
 			}
 		#endregion
 	#endregion

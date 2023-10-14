@@ -39,7 +39,7 @@ public partial class PlayerJump : State {
 
     #region My Methods
 		private void AnimatePlayer() {
-			animationPlayer.Play(GameResources.playerJumpAnimation);
+			player.PlayAnimation(GameResources.playerJumpAnimation);
 		}
 
 		private void MovePlayer() {
