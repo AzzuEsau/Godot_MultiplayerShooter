@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Data.Common;
 using System.Runtime.Serialization;
+using System.Linq;
+using Godot.Collections;
 
 public partial class MainMenu : Control {
 	#region Variables
@@ -168,6 +170,16 @@ public partial class MainMenu : Control {
 			// Run when a player disconnect run in all pears
 			private void Multiplayer_PeerDisconnected(long id) {
 				GD.Print("Runs in all pears, player disconected :( " + id);
+				PlayerData playerDisconected = Global.players.Where(x => x.id == id).First<PlayerData>();
+				Global.players.Remove(playerDisconected);
+
+				Array<Node> players = GetTree().GetNodesInGroup("Player");
+
+				GD.Print(players);
+
+				foreach(Node player in players)
+					if(player.Name == id.ToString())
+						player.QueueFree();
 			}
 
 
