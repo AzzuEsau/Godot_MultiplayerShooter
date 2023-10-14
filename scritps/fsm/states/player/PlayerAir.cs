@@ -4,7 +4,6 @@ using System;
 public partial class PlayerAir : State {
 	#region Variables
 		[Export] private Player player;
-		[Export] private AnimationPlayer animationPlayer;
 	#endregion
 
 	#region Signals
@@ -13,7 +12,7 @@ public partial class PlayerAir : State {
 
 	#region Godot Methdos
 		public override void _Ready() {
-
+			Helperuitilies.ValidateCheckNullValue(this, nameof(player), player);
 		}
 	#endregion
 

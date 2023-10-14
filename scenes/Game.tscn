@@ -34,3 +34,7 @@ position = Vector2(659, 463)
 
 [node name="2" type="Marker2D" parent="PlayerSpawn"]
 position = Vector2(1122, 463)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(423, 575)
+zoom = Vector2(1.5, 1.5)

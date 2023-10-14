@@ -30,7 +30,7 @@ public partial class PlayerPunch : State {
 		}
 
 		public override void Exit() {
-			
+			player.directionLerp = slownesVelocity;
 		}
 
 		public override void Update(double delta) {

@@ -14,7 +14,6 @@ public partial class PlayerIdle : State {
     #region Godot Validations
 		public override void _Ready() {
 			Helperuitilies.ValidateCheckNullValue(this, nameof(player), player);
-			Helperuitilies.ValidateCheckNullValue(this, nameof(animationPlayer), animationPlayer);
 		}
     #endregion
 

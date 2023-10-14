@@ -4,7 +4,6 @@ using System;
 public partial class PlayerJump : State {
     #region Variables
 		[Export] private Player player;
-		[Export] private AnimationPlayer animationPlayer;
     #endregion
 
     #region Signals
@@ -14,7 +13,6 @@ public partial class PlayerJump : State {
     #region Godot Validations
 		public override void _Ready() {
 			Helperuitilies.ValidateCheckNullValue(this, nameof(player), player);
-			Helperuitilies.ValidateCheckNullValue(this, nameof(animationPlayer), animationPlayer);
 		}
     #endregion
 

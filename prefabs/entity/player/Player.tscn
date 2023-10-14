@@ -187,6 +187,10 @@ properties/2/path = NodePath(".:position")
 properties/2/spawn = true
 properties/2/sync = true
 properties/2/watch = false
+properties/3/path = NodePath("CharacterComponents/GunRotationPoint/WeaponSprite:flip_v")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerSprite", "gunRotation", "gunSprite", "playerNameLabel", "multiplayerSynchronizer", "animationPlayer", "fsm", "idleState", "moveOnFloorState", "punchState", "jumpState", "airState") groups=["Player"]]
 collision_layer = 2
@@ -246,25 +250,22 @@ script = ExtResource("6_nown1")
 player = NodePath("../..")
 animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
 
-[node name="MoveOnFloorState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer")]
+[node name="MoveOnFloorState" type="Node" parent="FSM" node_paths=PackedStringArray("player")]
 script = ExtResource("7_lvl02")
 player = NodePath("../..")
-animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
 
 [node name="PunchState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer")]
 script = ExtResource("8_gibyl")
 player = NodePath("../..")
 animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
 
-[node name="JumpState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer")]
+[node name="JumpState" type="Node" parent="FSM" node_paths=PackedStringArray("player")]
 script = ExtResource("9_kjbse")
 player = NodePath("../..")
-animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
 
-[node name="AirState" type="Node" parent="FSM" node_paths=PackedStringArray("player", "animationPlayer")]
+[node name="AirState" type="Node" parent="FSM" node_paths=PackedStringArray("player")]
 script = ExtResource("10_4211e")
 player = NodePath("../..")
-animationPlayer = NodePath("../../CharacterComponents/AnimationPlayer")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
